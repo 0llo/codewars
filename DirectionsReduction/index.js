@@ -5,19 +5,18 @@ const dirReduc = arr => {
     WEST: "EAST",
     EAST: "WEST"
   };
-  let answer = arr.reduce((result, value, index) => {
-    if (!result) {
-      result = [];
+  if (arr.length > 1) {
+    for (let j = 0; j < arr.length; j++) {
+      for (let i = 0; i < arr.length; i++) {
+        if (arr[i] === pair[arr[i + 1]]) {
+          arr[i] = "a";
+          arr[i + 1] = "a";
+        }
+      }
+      arr = arr.filter(e => e != "a");
     }
-    if (index == 0) {
-      result.push(value);
-    } else if (result[result.length] != pair.value) {
-      result.push(value);
-    }
-    return result;
-  });
-
-  return answer;
+  }
+  return arr;
 };
 
-console.log(dirReduc(["NORTH", "WEST", "SOUTH", "EAST"]));
+console.log(dirReduc(["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"]));
