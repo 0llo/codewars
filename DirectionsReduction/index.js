@@ -1,13 +1,21 @@
 const dirReduc = arr => {
-  let x = 0,
-    y = 0;
-  let answer = [];
-  for (e of arr) {
-    e === "NORTH" ? y++ : e === "SOUTH" ? y-- : e === "EAST" ? x++ : x--;
-  }
-  x > 0 ? answer.push("NORTH".repeat(x)) : false;
-  x < 0 ? answer.push("SOUTH".repeat(Math.abs(x))) : false;
-  y > 0 ? answer.push("EAST".repeat(Math.abs(y))) : y < 0 ? answer.push("EAST".repeat(Math.abs(y))) : false;
+  const pair = {
+    NORTH: "SOUTH",
+    SOUTH: "NORTH",
+    WEST: "EAST",
+    EAST: "WEST"
+  };
+  let answer = arr.reduce((result, value, index) => {
+    if (!result) {
+      result = [];
+    }
+    if (index == 0) {
+      result.push(value);
+    } else if (result[result.length] != pair.value) {
+      result.push(value);
+    }
+    return result;
+  });
 
   return answer;
 };
