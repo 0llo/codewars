@@ -1,5 +1,4 @@
 const snail = array => {
-  console.log(`array.length : ${array.length}`);
   let arr = [];
   const totalR = Math.ceil(array.length / 2);
   let lenH = array.length;
@@ -12,7 +11,6 @@ const snail = array => {
     }
     array.splice(0, 1);
     lenV--;
-    console.log(`lenH : ${lenH}, lenV : ${lenV}, array: ${array}, arr: ${arr}`);
 
     //topleft to bottomleft
     for (let j = 0; j < lenV; j++) {
@@ -20,7 +18,6 @@ const snail = array => {
       array[j].splice(lenH - 1, 1);
     }
     lenH--;
-    console.log(`lenH : ${lenH}, lenV : ${lenV}, array: ${array}, arr: ${arr}`);
 
     //rightbottom to leftbottom
     for (let j = lenH - 1; j >= 0; j--) {
@@ -28,7 +25,6 @@ const snail = array => {
     }
     array.splice(lenV - 1);
     lenV--;
-    console.log(`lenH : ${lenH}, lenV : ${lenV}, array: ${array}, arr: ${arr}`);
 
     //leftbottom to lefttop
     for (let j = lenV - 1; j >= 0; j--) {
@@ -39,8 +35,6 @@ const snail = array => {
       }
     }
     lenH--;
-    console.log(`lenH : ${lenH}, lenV : ${lenV}, array: ${array}, arr: ${arr}`);
-    console.log(`done ${i + 1} / ${totalR} times`);
   }
   if (arr[0] === undefined) arr = [];
   return arr;

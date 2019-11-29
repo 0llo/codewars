@@ -5,18 +5,26 @@ const dirReduc = arr => {
     WEST: "EAST",
     EAST: "WEST"
   };
-  if (arr.length > 1) {
-    for (let j = 0; j < arr.length; j++) {
-      for (let i = 0; i < arr.length; i++) {
-        if (arr[i] === pair[arr[i + 1]]) {
-          arr[i] = "a";
-          arr[i + 1] = "a";
-        }
-      }
-      arr = arr.filter(e => e != "a");
-    }
-  }
-  return arr;
+  return arr.reduce((a, b) => {
+    a[[a.length] - 1] === pair[b] ? a.pop() : a.push(b);
+    return a;
+  }, []);
 };
 
 console.log(dirReduc(["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"]));
+
+const dirReduc2 = plan => {
+  var opposite = {
+    NORTH: "SOUTH",
+    EAST: "WEST",
+    SOUTH: "NORTH",
+    WEST: "EAST"
+  };
+  return plan.reduce((dirs, dir) => {
+    console.log(dirs.length);
+    if (dirs[dirs.length - 1] === opposite[dir]) dirs.pop();
+    else dirs.push(dir);
+    return dirs;
+  }, []);
+};
+console.log(dirReduc2(["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"]));
